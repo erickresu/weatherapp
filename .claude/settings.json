@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter analyze *)",
+      "Bash(flutter test *)",
+      "Bash(flutter pub get *)",
+      "Bash(flutter pub outdated *)",
+      "Bash(flutter pub deps *)",
+      "Bash(dart analyze *)",
+      "Bash(dart format *)",
+      "Bash(dart run build_runner *)",
+      "Bash(dart fix --dry-run *)",
+      "mcp__dart"
+    ]
+  },
+  "enabledMcpjsonServers": ["dart"],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/format-dart.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/readme-check.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

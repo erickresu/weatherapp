@@ -1,0 +1,24 @@
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../core/constants/network/api_constants.dart';
+import '../models/__feature___model.dart';
+
+abstract interface class __Feature__RemoteDataSource {
+  Future<__Feature__Model> get__Feature__();
+}
+
+@LazySingleton(as: __Feature__RemoteDataSource)
+class __Feature__RemoteDataSourceImpl implements __Feature__RemoteDataSource {
+  const __Feature__RemoteDataSourceImpl(this._dio);
+
+  final Dio _dio;
+
+  @override
+  Future<__Feature__Model> get__Feature__() async {
+    final response = await _dio.get<Map<String, dynamic>>(
+      '${ApiConstants.authBaseUrl}/__endpoint__',
+    );
+    return __Feature__Model.fromJson(response.data!);
+  }
+}

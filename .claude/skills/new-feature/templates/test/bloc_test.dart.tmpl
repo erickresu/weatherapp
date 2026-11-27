@@ -1,0 +1,48 @@
+import 'package:dartz/dartz.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:__package__/core/error/failure.dart';
+import 'package:__package__/features/__feature__/domain/entities/__feature___entity.dart';
+import 'package:__package__/features/__feature__/domain/usecases/get___feature__.dart';
+import 'package:__package__/features/__feature__/presentation/bloc/__feature___bloc.dart';
+
+class MockGet__Feature__ extends Mock implements Get__Feature__ {}
+
+void main() {
+  late MockGet__Feature__ get__Feature__;
+
+  setUp(() => get__Feature__ = MockGet__Feature__());
+
+  test('starts in __Feature__Initial', () {
+    expect(__Feature__Bloc(get__Feature__).state, const __Feature__Initial());
+  });
+
+  test('emits [Loading, Success] when the use case succeeds', () async {
+    const entity = __Feature__Entity(id: '1');
+    when(() => get__Feature__()).thenAnswer((_) async => const Right(entity));
+    final bloc = __Feature__Bloc(get__Feature__);
+
+    final expectation = expectLater(
+      bloc.stream,
+      emitsInOrder([const __Feature__Loading(), const __Feature__Success(entity)]),
+    );
+    bloc.add(const __Feature__Requested());
+
+    await expectation;
+    await bloc.close();
+  });
+
+  test('emits [Loading, Error] when the use case fails', () async {
+    when(() => get__Feature__()).thenAnswer((_) async => Left(Failure('boom')));
+    final bloc = __Feature__Bloc(get__Feature__);
+
+    final expectation = expectLater(
+      bloc.stream,
+      emitsInOrder([const __Feature__Loading(), const __Feature__Error('boom')]),
+    );
+    bloc.add(const __Feature__Requested());
+
+    await expectation;
+    await bloc.close();
+  });
+}

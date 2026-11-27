@@ -1,0 +1,34 @@
+part of '__feature___bloc.dart';
+
+sealed class __Feature__State extends Equatable {
+  const __Feature__State();
+
+  @override
+  List<Object?> get props => [];
+}
+
+final class __Feature__Initial extends __Feature__State {
+  const __Feature__Initial();
+}
+
+final class __Feature__Loading extends __Feature__State {
+  const __Feature__Loading();
+}
+
+final class __Feature__Success extends __Feature__State {
+  const __Feature__Success(this.data);
+
+  final __Feature__Entity data;
+
+  @override
+  List<Object?> get props => [data];
+}
+
+final class __Feature__Error extends __Feature__State {
+  const __Feature__Error(this.message);
+
+  final String message;
+
+  @override
+  List<Object?> get props => [message];
+}

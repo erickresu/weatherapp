@@ -1,0 +1,8 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/error/failure.dart';
+import '../entities/__feature___entity.dart';
+
+abstract interface class __Feature__Repository {
+  Future<Either<Failure, __Feature__Entity>> get__Feature__();
+}

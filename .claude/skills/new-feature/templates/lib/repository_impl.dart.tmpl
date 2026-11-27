@@ -1,0 +1,27 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../core/error/failure.dart';
+import '../../domain/entities/__feature___entity.dart';
+import '../../domain/repositories/__feature___repository.dart';
+import '../datasources/__feature___remote_data_source.dart';
+
+@LazySingleton(as: __Feature__Repository)
+class __Feature__RepositoryImpl implements __Feature__Repository {
+  const __Feature__RepositoryImpl(this._remote);
+
+  final __Feature__RemoteDataSource _remote;
+
+  @override
+  Future<Either<Failure, __Feature__Entity>> get__Feature__() async {
+    try {
+      final model = await _remote.get__Feature__();
+      return Right(model.toEntity());
+    } on DioException catch (e) {
+      return Left(Failure(e.message ?? 'Network error'));
+    } catch (_) {
+      return Left(Failure('Unexpected error'));
+    }
+  }
+}

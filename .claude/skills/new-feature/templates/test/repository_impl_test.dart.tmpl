@@ -1,0 +1,45 @@
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:__package__/features/__feature__/data/datasources/__feature___remote_data_source.dart';
+import 'package:__package__/features/__feature__/data/models/__feature___model.dart';
+import 'package:__package__/features/__feature__/data/repositories/__feature___repository_impl.dart';
+import 'package:__package__/features/__feature__/domain/entities/__feature___entity.dart';
+
+class Mock__Feature__RemoteDataSource extends Mock
+    implements __Feature__RemoteDataSource {}
+
+void main() {
+  late Mock__Feature__RemoteDataSource remote;
+  late __Feature__RepositoryImpl repository;
+
+  setUp(() {
+    remote = Mock__Feature__RemoteDataSource();
+    repository = __Feature__RepositoryImpl(remote);
+  });
+
+  test('returns the entity when the data source succeeds', () async {
+    when(
+      () => remote.get__Feature__(),
+    ).thenAnswer((_) async => const __Feature__Model(id: '1'));
+
+    final result = await repository.get__Feature__();
+
+    expect(result, const Right(__Feature__Entity(id: '1')));
+  });
+
+  test('returns a Failure when the data source throws DioException', () async {
+    when(() => remote.get__Feature__()).thenThrow(
+      DioException(
+        requestOptions: RequestOptions(path: '/__endpoint__'),
+        message: 'timeout',
+      ),
+    );
+
+    final result = await repository.get__Feature__();
+
+    expect(result.isLeft(), isTrue);
+    result.fold((failure) => expect(failure.message, 'timeout'), (_) {});
+  });
+}

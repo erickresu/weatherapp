@@ -1,0 +1,30 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../domain/entities/__feature___entity.dart';
+import '../../domain/usecases/get___feature__.dart';
+
+part '__feature___event.dart';
+part '__feature___state.dart';
+
+@injectable
+class __Feature__Bloc extends Bloc<__Feature__Event, __Feature__State> {
+  __Feature__Bloc(this._get__Feature__) : super(const __Feature__Initial()) {
+    on<__Feature__Requested>(_onRequested);
+  }
+
+  final Get__Feature__ _get__Feature__;
+
+  Future<void> _onRequested(
+    __Feature__Requested event,
+    Emitter<__Feature__State> emit,
+  ) async {
+    emit(const __Feature__Loading());
+    final result = await _get__Feature__();
+    result.fold(
+      (failure) => emit(__Feature__Error(failure.message)),
+      (data) => emit(__Feature__Success(data)),
+    );
+  }
+}

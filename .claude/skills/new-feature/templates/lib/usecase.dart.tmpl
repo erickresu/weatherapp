@@ -1,0 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../core/error/failure.dart';
+import '../entities/__feature___entity.dart';
+import '../repositories/__feature___repository.dart';
+
+@lazySingleton
+class Get__Feature__ {
+  const Get__Feature__(this._repository);
+
+  final __Feature__Repository _repository;
+
+  Future<Either<Failure, __Feature__Entity>> call() =>
+      _repository.get__Feature__();
+}

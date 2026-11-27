@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/di/injection.dart';
+import '../bloc/__feature___bloc.dart';
+
+class __Feature__Page extends StatelessWidget {
+  const __Feature__Page({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<__Feature__Bloc>()..add(const __Feature__Requested()),
+      child: Scaffold(
+        appBar: AppBar(title: const Text('__Feature__')),
+        body: BlocBuilder<__Feature__Bloc, __Feature__State>(
+          builder: (context, state) => switch (state) {
+            __Feature__Initial() || __Feature__Loading() => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            __Feature__Success(:final data) => Center(child: Text(data.id)),
+            __Feature__Error(:final message) => Center(child: Text(message)),
+          },
+        ),
+      ),
+    );
+  }
+}
