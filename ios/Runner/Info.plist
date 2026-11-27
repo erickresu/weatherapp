@@ -5,7 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Try Ko Ulit Clean Arch</string>
+	<string>Weather</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to show the weather where you are.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

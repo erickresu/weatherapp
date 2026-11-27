@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -7,8 +5,7 @@ void showLoadingDialog(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: false, // Prevent closing by tapping outside
-    builder:
-        (_) => Center(
+    builder: (_) => Center(
       child: Material(
         color: Colors.transparent,
         child: Column(

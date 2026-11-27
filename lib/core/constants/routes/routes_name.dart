@@ -3,4 +3,5 @@ class RouteNames {
   static const login = '/login';
   static const home = '/home';
   static const qrScanner = '/qrScanner';
+  static const weather = '/weather';
 }

@@ -1,10 +1,12 @@
 import 'package:logger/logger.dart';
 
 class LoggerUtils {
-  static late Logger _logger;
+  static Logger _logger = _build();
 
-  static void init() {
-    _logger = Logger(
+  static void init() => _logger = _build();
+
+  static Logger _build() {
+    return Logger(
       printer: PrettyPrinter(
         methodCount: 0,
         errorMethodCount: 5,

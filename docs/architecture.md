@@ -49,7 +49,7 @@ Shared code lives in `lib/core/` (constants, DI, errors, shared models, utils).
 
 - `lib/core/di/injection.dart` exposes `getIt` and `configureDependencies()`, called in `runAppWithFlavor()`.
 - Annotate classes with `@injectable`, `@lazySingleton`, or `@LazySingleton(as: SomeRepository)` to bind an implementation to its interface.
-- Third-party objects (`Dio`, `FlutterSecureStorage`) are provided in `lib/core/di/core_module.dart`.
+- Third-party objects (`Dio`, `FlutterSecureStorage`, `GeolocatorPlatform`) are provided in `lib/core/di/core_module.dart`.
 - `injection.config.dart` is generated. Never edit it; run `dart run build_runner build -d`.
 
 ## Errors
