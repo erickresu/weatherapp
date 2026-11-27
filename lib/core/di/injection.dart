@@ -8,7 +8,7 @@ final getIt = GetIt.instance;
 @InjectableInit(
   initializerName: r'$initGetIt',
   preferRelativeImports: true,
-  asExtension: false
+  asExtension: false,
 )
 Future<void> configureDependencies() async {
   $initGetIt(getIt);

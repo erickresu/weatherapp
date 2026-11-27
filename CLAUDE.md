@@ -76,10 +76,12 @@ dart run build_runner build -d          # regenerate DI, freezed, json code
 dart run build_runner watch -d          # regenerate on save
 flutter analyze
 flutter test
-flutter run --flavor dev -t lib/main_test.dart    # test backend (Android)
-flutter run --flavor prod -t lib/main_prod.dart   # prod backend (Android)
-flutter run -t lib/main_test.dart                 # iOS has no flavor schemes yet
+flutter run --flavor dev -t lib/main_test.dart --dart-define-from-file=env/dev.json    # test backend (Android)
+flutter run --flavor prod -t lib/main_prod.dart --dart-define-from-file=env/dev.json   # prod backend (Android)
+flutter run -t lib/main_test.dart --dart-define-from-file=env/dev.json                 # iOS has no flavor schemes yet
 ```
+
+`env/dev.json` (gitignored, copy of `env/example.json`) holds `OPENWEATHER_API_KEY`, read via `String.fromEnvironment` in `ApiConstants`.
 
 ## Do not
 

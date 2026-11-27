@@ -51,3 +51,7 @@ docs/.trash/
 
 # Claude Code: personal settings stay local
 .claude/settings.local.json
+
+# Local build-time config (API keys). Copy env/example.json to env/dev.json.
+env/*.json
+!env/example.json

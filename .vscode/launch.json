@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "dev (test backend)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_test.dart",
+      "args": ["--flavor", "dev", "--dart-define-from-file=env/dev.json"]
+    },
+    {
+      "name": "prod (prod backend)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_prod.dart",
+      "args": ["--flavor", "prod", "--dart-define-from-file=env/dev.json"]
+    },
+    {
+      "name": "iOS (test backend, no flavor)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_test.dart",
+      "args": ["--dart-define-from-file=env/dev.json"]
+    }
+  ]
+}

@@ -21,6 +21,10 @@ None yet.
 - Use cases: check whether a saved token exists (to do).
 - Repository interface: none yet.
 
+## Notes
+
+- Not the start route any more: the app opens on `RouteNames.weather` ([weather](weather.md)). Wire the splash back in when login exists.
+
 ## States
 
 - Currently a static page with no bloc.
